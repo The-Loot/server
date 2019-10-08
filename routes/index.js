@@ -7,6 +7,6 @@ router.get('/', (request, response) => {
   response.send('Welcome to The Loot');
 });
 
-router.get('/api/', (request, response) => {
-  response.send('Welcome to The Loot API');
-});
+router.use('/api', require('./api'));
+
+module.exports = router;

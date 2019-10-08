@@ -13,6 +13,11 @@ mongoose.connect(mongoDB, {
 });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
+db.on('connecting', () => console.log(`Server connecting to mongo database.`));
+db.on('connected', () => console.log(`Server connected to mongo database.`));
+db.on('reconnected', () => console.log(`Server reconnected to mongo database.`));
+db.on('disconnecting', () => console.log(`Server disconnecting from mongo database.`));
+db.on('disconnected', () => console.log(`Server disconnected from mongo database.`));
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
 // Middleware

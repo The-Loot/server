@@ -1,7 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
 
-const statsSchema = require('./stats.model').schema;
-
 const playerSchema = new mongoose.Schema({
   team_id: {
     type: Schema.Types.ObjectId,

@@ -4,7 +4,7 @@ const playerSchema = require('./player.model').schema;
 
 const teamSchema = new mongoose.Schema({
   name: String,
-  divison: String,
+  division: String,
   players: [
     {
       type: Schema.Types.ObjectId,

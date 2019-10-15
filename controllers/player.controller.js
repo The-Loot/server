@@ -3,7 +3,9 @@ const Team = require('../models/team.model');
 
 const getOnePlayer = async (request, response, next) => {
   try {
-    // something
+    const playerId = request.params.id;
+    const player = await Player.findOne({ _id: playerId });
+    response.send(player);
   } catch (error) {
     console.error(error);
     next(error);
@@ -35,7 +37,13 @@ const addPlayer = async (request, response, next) => {
       age: request.body.age,
       height: request.body.height,
       weight: request.body.weight,
-      stats: [],
+      stats: {
+        points: 0,
+        rebounds: 0,
+        assists: 0,
+        steals: 0,
+        blocks: 0,
+      },
     });
 
     // Get players array from Team
@@ -58,7 +66,23 @@ const addPlayer = async (request, response, next) => {
 
 const deletePlayer = async (request, response, next) => {
   try {
-    // something
+    const playerId = request.params.id;
+
+    // Delete Player from Team
+    const player = await Player.findById({ _id: playerId });
+    const team = await Team.findById({ _id: player.team_id });
+    const index = team.players.indexOf(playerId);
+    if (index > -1) {
+      team.players.splice(index, 1);
+    }
+
+    // Update the team
+    await Team.findOneAndUpdate({ _id: player.team_id }, { players: team.players }, { new: true });
+
+    // Delete Player from Player Database
+    await Player.deleteOne({ _id: playerId });
+
+    response.send('Player Deleted');
   } catch (error) {
     console.error(error);
     next(error);
@@ -67,7 +91,10 @@ const deletePlayer = async (request, response, next) => {
 
 const updatePlayer = async (request, response, next) => {
   try {
-    // something
+    const playerId = request.params.id;
+    const playerInfo = request.body;
+    const updatedPlayer = await Player.updateOne({ _id: playerId }, playerInfo);
+    response.send(updatedPlayer);
   } catch (error) {
     console.error(error);
     next(error);

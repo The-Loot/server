@@ -14,5 +14,8 @@ router.put('/teams/:id', controllers.team.updateTeam);
 // PLayer Routes
 router.post('/player', controllers.player.addPlayer);
 router.get('/player', controllers.player.getAllPlayers);
+router.get('/player/:id', controllers.player.getOnePlayer);
+router.delete('/player/:id', controllers.player.deletePlayer);
+router.put('/player/:id', controllers.player.updatePlayer);
 
 module.exports = router;

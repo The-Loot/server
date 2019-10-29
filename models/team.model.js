@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
 
 const playerSchema = require('./player.model').schema;
 
@@ -7,7 +7,7 @@ const teamSchema = new mongoose.Schema({
   division: String,
   players: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Player',
     },
   ],

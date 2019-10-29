@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -6,7 +7,9 @@ const path = require('path');
 const app = express();
 
 // Setup a Mongoose Connection
-const devConnectionUrl = 'mongodb+srv://admin:admin@cluster0-mm3nu.mongodb.net/theloot?retryWrites=true&w=majority';
+const devConnectionUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${
+  process.env.DB_HOST
+}/theloot?retryWrites=true&w=majority`;
 const mongoDB = process.env.DB_URL || devConnectionUrl;
 mongoose.connect(mongoDB, {
   useNewUrlParser: true,

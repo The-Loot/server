@@ -12,6 +12,17 @@ const getOnePlayer = async (request, response, next) => {
   }
 };
 
+const getPlayersByTeam = async (request, response, next) => {
+  try {
+    const teamId = request.params.id;
+    const players = await Player.find({ team_id: teamId });
+    response.send(players);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+};
+
 const getAllPlayers = async (request, response, next) => {
   try {
     const players = await Player.find();
@@ -103,6 +114,7 @@ const updatePlayer = async (request, response, next) => {
 
 module.exports = {
   getOnePlayer,
+  getPlayersByTeam,
   getAllPlayers,
   addPlayer,
   deletePlayer,

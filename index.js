@@ -32,6 +32,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes'));
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log('The Loot Server is running on Port 5000');
 });

@@ -19,4 +19,8 @@ router.get('/players/:id', controllers.player.getPlayersByTeam);
 router.delete('/player/:id', controllers.player.deletePlayer);
 router.put('/player/:id', controllers.player.updatePlayer);
 
+// User Routes
+router.get('/login', controllers.user.login);
+router.post('/signup', controllers.user.signup);
+
 module.exports = router;

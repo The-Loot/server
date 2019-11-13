@@ -13,6 +13,8 @@ const devConnectionUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_
 const mongoDB = process.env.DB_URL || devConnectionUrl;
 mongoose.connect(mongoDB, {
   useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;

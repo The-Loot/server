@@ -15,7 +15,7 @@ router.patch('/teams/:id', controllers.team.updateTeam);
 router.post('/player', controllers.player.addPlayer);
 router.get('/player', controllers.player.getAllPlayers);
 router.get('/player/:id', controllers.player.getOnePlayer);
-router.get('/players/:id', controllers.player.getPlayersByTeam);
+router.get('/players/team/:id', controllers.player.getPlayersByTeam);
 router.delete('/player/:id', controllers.player.deletePlayer);
 router.put('/player/:id', controllers.player.updatePlayer);
 
